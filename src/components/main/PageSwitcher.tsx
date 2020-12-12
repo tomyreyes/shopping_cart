@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Cart } from '../Cart';
-import { Categories } from '../Categories';
-import { ProductDetails } from '../ProductDetails';
-import { ProductsList } from '../ProductsList';
 import { Home } from './Home';
+import { Categories } from '../Categories';
+import { ProductsList } from '../ProductsList';
+import { ProductDetails } from '../ProductDetails';
+import { Cart } from '../Cart';
 
 export const PageSwitcher = (): JSX.Element => {
     return (
