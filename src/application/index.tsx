@@ -6,14 +6,18 @@ import { Footer } from '../components/main/Footer';
 import { Header } from '../components/main/Header';
 import { PageSwitcher } from '../components/main/PageSwitcher';
 import { ApplicationSaga, buildSaga, runSaga } from '../sagas';
-import { buildStore } from '../application/store';
+import { buildStore, CreatedStore } from '../application/store';
+import { loadCachedDataRequest } from '../stores/dataCache';
 
 const saga = buildSaga();
 const store = buildStore(saga);
-const startApplication = (applicationSaga: ApplicationSaga): void => {
+
+const startApplication = (applicationStore: CreatedStore, applicationSaga: ApplicationSaga): void => {
     runSaga(applicationSaga.middleware);
+    applicationStore.dispatch(loadCachedDataRequest());
 };
-startApplication(saga);
+
+startApplication(store, saga);
 
 export const Application = (): JSX.Element => {
     return (
