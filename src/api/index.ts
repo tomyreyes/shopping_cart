@@ -1,10 +1,11 @@
 import axios from 'axios';
 import buildUrl from 'build-url';
+import { UnvalidatedData } from './types';
 
-export const requestCategoryListings = async (category: string, api_key: string): Promise<any> => {
+export const requestCategoryListings = async (category: string, api_key: string): Promise<UnvalidatedData> => {
     const url = buildListingUrlFromCategory(category, api_key);
     return await axios.get(url);
-}
+};
 
 const buildListingUrlFromCategory = (category: string, api_key: string): string => {
     const baseUrl = 'https://openapi.etsy.com/';
