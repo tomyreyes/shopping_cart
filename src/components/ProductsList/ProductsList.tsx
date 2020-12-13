@@ -1,4 +1,5 @@
 // tslint:disable: no-expression-statement
+import * as constants from '../../application/constants';
 import { useEffect } from 'react';
 import { RequestItemsByCategoryAction } from '../../stores/items/actions';
 import { ItemsList } from '../../stores/items/types';
@@ -16,16 +17,29 @@ type Props = ProductsListState & ProductsListActions;
 export const ProductsList = (props: Props): JSX.Element => {
     useEffect((): void => {
         props.dispatchRequestItemsByCategory(props.categoryId);
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.categoryId]);
     return (
         <div>This is the Products List page.
             {props.categoryId}
-        Use card collection component.
-        Each card should have:
-            <p>Image</p>
-            <p>Name</p>
-            <p>Cost</p>
-            <p>Stars?</p>
+            {renderProductsListBasedOnType(props.itemsForCategory)}
         </div>
     );
+};
+
+const renderProductsListBasedOnType = (itemsForCategory: ItemsList): JSX.Element => {
+    if (!itemsForCategory) {
+        return <div>Show initial empty component.</div>;
+    }
+    switch (itemsForCategory.type) {
+        case constants.LOADING_ITEMS_BY_CATEGORY:
+            return <div>Show loading component.</div>;
+        case constants.SUCCESS_ITEMS_BY_CATEGORY:
+            return <div>Show success component.</div>;
+        case constants.ERROR_ITEMS_BY_CATEGORY:
+            return <div>Show error component.</div>;
+        case constants.INITIAL_EMPTY_ITEMS_BY_CATEGORY:
+        default:
+            return <div>Show initial empty component.</div>;
+    }
 };
