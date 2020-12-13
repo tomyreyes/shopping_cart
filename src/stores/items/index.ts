@@ -1,4 +1,3 @@
-import { strictEqual } from 'assert';
 import * as constants from '../../application/constants';
 import { ItemsAction } from './actions';
 import { ItemsByCategory } from './types';
@@ -40,7 +39,7 @@ export const reducer = (store: ItemsStore = buildDefaultStore(), action?: ItemsA
             };
         case constants.REQUEST_ITEMS_BY_CATEGORY_ERROR:
             return {
-                ...strictEqual,
+                ...store,
                 itemsByCategory: {
                     ...store.itemsByCategory,
                     [action.payload.category]: {
