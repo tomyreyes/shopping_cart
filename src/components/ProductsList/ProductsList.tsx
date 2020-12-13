@@ -16,6 +16,9 @@ type Props = ProductsListState & ProductsListActions;
 
 export const ProductsList = (props: Props): JSX.Element => {
     useEffect((): void => {
+        if (props.categoryId === 'no-match') {
+            return;
+        }
         props.dispatchRequestItemsByCategory(props.categoryId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.categoryId]);
