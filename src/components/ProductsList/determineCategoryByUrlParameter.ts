@@ -1,14 +1,10 @@
-export interface UrlParameters {
-    readonly categoryId: string;
-}
-
-export const determineCategoryByUrlParameter = (urlParameters: UrlParameters): string => {
-    switch (urlParameters.categoryId) {
-        case 'Dune':
-            return 'Dune';
-        case 'Harry Potter':
+export const determineValidCategoryId = (categoryId: string): string => {
+    switch (categoryId) {
+        case 'dune':
+            return 'dune';
+        case 'harrypotter':
             return 'Harry Potter';
-        case 'Star Wars':
+        case 'starwars':
             return 'Star Wars';
         default:
             return 'no-match';
