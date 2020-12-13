@@ -1,13 +1,16 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { reducer } from '../store';
 import { Footer } from '../components/main/Footer';
 import { Header } from '../components/main/Header';
 import { PageSwitcher } from '../components/main/PageSwitcher';
+import { buildSaga, runSaga } from '../sagas';
+import { buildStore } from '../application/store';
 
-const store = createStore(reducer);
+const saga = buildSaga();
+const store = buildStore(saga);
+// tslint:disable-next-line: no-expression-statement
+runSaga(saga.middleware);
 
 export const Application = (): JSX.Element => {
     return (
