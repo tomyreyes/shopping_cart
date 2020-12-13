@@ -1,8 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import buildUrl from 'build-url';
-import { UnvalidatedData } from './types';
 
-export const requestCategoryListings = async (category: string, api_key: string): Promise<UnvalidatedData> => {
+export const requestCategoryListings = async (category: string, api_key: string): Promise<AxiosResponse> => {
     const url = buildListingUrlFromCategory(category, api_key);
     return await axios.get(url);
 };
