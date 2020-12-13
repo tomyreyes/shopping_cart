@@ -14,7 +14,7 @@ export function* watchRequestItemsByCategory(): IterableIterator<ForkEffect> {
 export function* updateItemsByCategory(action: RequestItemsByCategoryAction): any {
     const category = action.payload;
     try {
-        const apiResponse: AxiosResponse = yield call(requestCategoryListings, category, 'key');
+        const apiResponse: AxiosResponse = yield call(requestCategoryListings, category, 'qm099t7yynq4mrufiqzt0maz');
         const validatedResponse = validateIncomingData(itemsArray, apiResponse.data);
         if (!validatedResponse.isValid) {
             console.log('error in validation');
