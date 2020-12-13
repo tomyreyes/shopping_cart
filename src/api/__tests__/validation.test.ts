@@ -1,18 +1,19 @@
 // tslint:disable: no-expression-statement typedef readonly-array
 import { validateIncomingData } from '../validation';
 import { itemsArray } from '../schema';
+import { aNumber, aString } from '../../application/helpers/randomTestValues';
 
 describe('items response validation', () => {
     describe('with valid data' , () => {
         it('passes schema validation', () => {
             const validData = [{
-                listing_id: 1,
-                title: 'First item',
-                description: 'Item Description',
-                price: '10.00',
-                views: 1,
+                listing_id: aNumber(),
+                title: aString(),
+                description: aString(),
+                price: aString(),
+                views: aNumber(),
                 Images: [
-                    { listing_image_id: 1 },
+                    { listing_image_id: aNumber() },
                 ],
             }];
             const validator = validateIncomingData(itemsArray, validData);
@@ -23,13 +24,13 @@ describe('items response validation', () => {
     describe('with invalid data', () => {
         it('fails schema validation', () => {
             const invalidData = [{
-                listing_id: 1,
-                // title: 'First item',
-                // description: 'Item Description',
-                // price: '10.00',
-                // views: 1,
+                listing_id: aNumber(),
+                // title: aString(),
+                // description: aString(),
+                // price: aString(),
+                // views: aNumber(),
                 // Images: [
-                //     { listing_image_id: 1 },
+                //     { listing_image_id: aNumber() },
                 // ],
             }];
             const validator = validateIncomingData(itemsArray, invalidData);
