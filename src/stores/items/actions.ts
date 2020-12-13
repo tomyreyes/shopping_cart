@@ -1,9 +1,12 @@
 import * as constants from '../../application/constants';
+import { LoadCachedDataErrorAction, LoadCachedDataSuccessAction } from '../dataCache';
 import { Item } from './types';
 
 export type ItemsAction = RequestItemsByCategoryAction
 | RequestItemsByCategorySuccessAction
-| RequestItemsByCategoryErrorAction;
+| RequestItemsByCategoryErrorAction
+| LoadCachedDataSuccessAction
+| LoadCachedDataErrorAction;
 
 export interface RequestItemsByCategoryAction {
     readonly type: typeof constants.REQUEST_ITEMS_BY_CATEGORY;

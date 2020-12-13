@@ -48,6 +48,11 @@ export const reducer = (store: ItemsStore = buildDefaultStore(), action?: ItemsA
                     },
                 },
             };
+        case constants.LOAD_CACHED_DATA_SUCCESS:
+            return {
+                ...store,
+                itemsByCategory: action.payload.itemsList,
+            };
         default:
             return store;
     }
