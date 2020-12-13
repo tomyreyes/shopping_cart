@@ -1,7 +1,7 @@
 // tslint:disable: no-expression-statement
 import * as constants from '../application/constants';
 import * as R from 'ramda';
-import { ForkEffect, takeLatest, call, put} from 'redux-saga/effects';
+import { ForkEffect, takeLatest, call, put } from 'redux-saga/effects';
 import { RequestItemsByCategoryAction, requestItemsByCategoryError, requestItemsByCategorySuccess } from '../stores/items/actions';
 import { requestCategoryListings } from '../api';
 import { AxiosResponse } from 'axios';
@@ -15,21 +15,25 @@ export function* watchRequestItemsByCategory(): IterableIterator<ForkEffect> {
     yield takeLatest(constants.REQUEST_ITEMS_BY_CATEGORY, updateItemsByCategory);
 }
 
-export function* updateItemsByCategory(action: RequestItemsByCategoryAction): any {
+export function* updateItemsByCategory(action: RequestItemsByCategoryAction): UpdateResult {
     const category = action.payload;
     try {
         const apiResponse: AxiosResponse = yield call(requestCategoryListings, category, API_KEY);
-        const validatedResponse = validateIncomingData(itemsArray, apiResponse.data);
+        const validatedResponse = validateIncomingData(itemsArray, apiResponse.data.results);
         if (!validatedResponse.isValid) {
+            console.log(validatedResponse.errors);
             const errorMessage = 'The data received fails validation. Please try again later.';
             return yield put(requestItemsByCategoryError(category, errorMessage));
         }
         const items = parseResponseToItemsForStore(apiResponse.data.results);
-        yield put(requestItemsByCategorySuccess(category, items));
+        return yield put(requestItemsByCategorySuccess(category, items));
     } catch (error) {
-        yield put(requestItemsByCategoryError(category, error));
+        return yield put(requestItemsByCategoryError(category, error));
     }
 }
+
+// tslint:disable-next-line: no-any
+type UpdateResult = any;
 
 interface ValidatedResponseItemJSON {
     readonly listing_id: number;

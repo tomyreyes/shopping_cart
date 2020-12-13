@@ -28,9 +28,6 @@ const image = {
         "brightness": {
             "type": "number"
         },
-        "is_black_and_white": {
-            "type": "boolean"
-        },
         "creation_tsz": {
             "type": "number"
         },

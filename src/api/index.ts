@@ -11,7 +11,7 @@ const buildListingUrlFromCategory = (category: string, api_key: string): string 
     const path = 'v2/listings/active';
     const fields = 'listing_id,title,description,price,views';
     const includes = 'Images';
-    const limit = '100';
+    const limit = '25';
     const taxonomy_id = '70';
     const keywords = category;
     return buildUrl(baseUrl, {
