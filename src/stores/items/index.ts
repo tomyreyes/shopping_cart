@@ -31,7 +31,7 @@ export const reducer = (store: ItemsStore = buildDefaultStore(), action?: ItemsA
                 ...store,
                 itemsByCategory: {
                     ...store.itemsByCategory,
-                    [action.payload.category]: {
+                    [action.payload.categoryId]: {
                         type: constants.SUCCESS_ITEMS_BY_CATEGORY,
                         items: action.payload.items,
                     },
@@ -42,7 +42,7 @@ export const reducer = (store: ItemsStore = buildDefaultStore(), action?: ItemsA
                 ...store,
                 itemsByCategory: {
                     ...store.itemsByCategory,
-                    [action.payload.category]: {
+                    [action.payload.categoryId]: {
                         type: constants.ERROR_ITEMS_BY_CATEGORY,
                         errorMessage: action.payload.errorMessage,
                     },

@@ -12,7 +12,7 @@ export const PageSwitcher = (): JSX.Element => {
         <Switch>
             <Route exact path='/' component={HomeConnected} />
             <Route exact path='/categories' render={Categories} />
-            <Route exact path='/categories/:productListId' component={ProductsListConnected} />
+            <Route exact path='/categories/:categoryId' component={ProductsListConnected} />
             <Route exact path='/product/:productId' render={ProductDetails}/>
             <Route exact path='/cart' render={Cart} />
             <Route component={PageNotFound} />

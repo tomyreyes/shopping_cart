@@ -6,8 +6,8 @@ import { Home, HomeActions } from './Home';
 type Action = RequestItemsByCategoryAction;
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): HomeActions => ({
-    dispatchRequestItemsByCategory: (category: string): RequestItemsByCategoryAction =>
-        dispatch(requestItemsByCategory(category)),
+    dispatchRequestItemsByCategory: (categoryId: string): RequestItemsByCategoryAction =>
+        dispatch(requestItemsByCategory(categoryId)),
 });
 
 export const HomeConnected = connect(undefined, mapDispatchToProps)(Home);

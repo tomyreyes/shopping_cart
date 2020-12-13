@@ -6,8 +6,8 @@ import { ProductsList, ProductsListActions } from './ProductsList';
 type Action = RequestItemsByCategoryAction;
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>): ProductsListActions => ({
-    dispatchRequestItemsByCategory: (category: string): RequestItemsByCategoryAction =>
-        dispatch(requestItemsByCategory(category)),
+    dispatchRequestItemsByCategory: (categoryId: string): RequestItemsByCategoryAction =>
+        dispatch(requestItemsByCategory(categoryId)),
 });
 
 export const ProductsListConnected = connect(undefined, mapDispatchToProps)(ProductsList);

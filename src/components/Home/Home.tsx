@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { RequestItemsByCategoryAction } from '../../stores/items/actions';
 
 export interface HomeActions {
-    readonly dispatchRequestItemsByCategory: (category: string) => RequestItemsByCategoryAction;
+    readonly dispatchRequestItemsByCategory: (categoryId: string) => RequestItemsByCategoryAction;
 }
 
 type Props = HomeActions;

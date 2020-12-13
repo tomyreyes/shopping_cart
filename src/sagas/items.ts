@@ -16,19 +16,19 @@ export function* watchRequestItemsByCategory(): IterableIterator<ForkEffect> {
 }
 
 export function* updateItemsByCategory(action: RequestItemsByCategoryAction): UpdateResult {
-    const category = action.payload;
+    const categoryId = action.payload;
     try {
-        const apiResponse: AxiosResponse = yield call(requestCategoryListings, category, API_KEY);
+        const apiResponse: AxiosResponse = yield call(requestCategoryListings, categoryId, API_KEY);
         const validatedResponse = validateIncomingData(itemsArray, apiResponse.data.results);
         if (!validatedResponse.isValid) {
             console.log(validatedResponse.errors);
             const errorMessage = 'The data received fails validation. Please try again later.';
-            return yield put(requestItemsByCategoryError(category, errorMessage));
+            return yield put(requestItemsByCategoryError(categoryId, errorMessage));
         }
         const items = parseResponseToItemsForStore(apiResponse.data.results);
-        return yield put(requestItemsByCategorySuccess(category, items));
+        return yield put(requestItemsByCategorySuccess(categoryId, items));
     } catch (error) {
-        return yield put(requestItemsByCategoryError(category, error));
+        return yield put(requestItemsByCategoryError(categoryId, error));
     }
 }
 

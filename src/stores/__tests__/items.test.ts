@@ -6,23 +6,23 @@ import { RequestItemsByCategoryAction, RequestItemsByCategoryErrorAction, Reques
 import { Item } from '../items/types';
 
 describe('the items reducer', () => {
-    describe('when sending a request for items by category', () => {
-        it ('creates a loading items by category object', () => {
+    describe('when sending a request for items by categoryId', () => {
+        it ('creates a loading items by categoryId object', () => {
             const oldStore = buildDefaultStore();
-            const category = aString();
+            const categoryId = aString();
             const action: RequestItemsByCategoryAction = {
                 type: constants.REQUEST_ITEMS_BY_CATEGORY,
-                payload: category,
+                payload: categoryId,
             };
             const newStore = reducer(oldStore, action);
-            expect(newStore.itemsByCategory[category].type).toBe(constants.LOADING_ITEMS_BY_CATEGORY);
+            expect(newStore.itemsByCategory[categoryId].type).toBe(constants.LOADING_ITEMS_BY_CATEGORY);
         });
     });
 
-    describe('when a successful items by category is received', () => {
-        it('creates a success items by category object', () => {
+    describe('when a successful items by categoryId is received', () => {
+        it('creates a success items by categoryId object', () => {
             const oldStore = buildDefaultStore();
-            const category = aString();
+            const categoryId = aString();
             const item: Item = {
                 id: aNumber(),
                 title: aString(),
@@ -39,29 +39,29 @@ describe('the items reducer', () => {
             const action: RequestItemsByCategorySuccessAction = {
                 type: constants.REQUEST_ITEMS_BY_CATEGORY_SUCCESS,
                 payload: {
-                    category,
+                    categoryId,
                     items: [item],
                 },
             };
             const newStore = reducer(oldStore, action);
-            expect(newStore.itemsByCategory[category].type).toBe(constants.SUCCESS_ITEMS_BY_CATEGORY);
+            expect(newStore.itemsByCategory[categoryId].type).toBe(constants.SUCCESS_ITEMS_BY_CATEGORY);
         });
     });
 
     describe('when an error response is received', () => {
-        it('creates an error items by category object', () => {
+        it('creates an error items by categoryId object', () => {
             const oldStore = buildDefaultStore();
-            const category = aString();
+            const categoryId = aString();
             const errorMessage = 'An error has been received.';
             const action: RequestItemsByCategoryErrorAction = {
                 type: constants.REQUEST_ITEMS_BY_CATEGORY_ERROR,
                 payload: {
-                    category,
+                    categoryId,
                     errorMessage,
                 },
             };
             const newStore = reducer(oldStore, action);
-            expect(newStore.itemsByCategory[category].type).toBe(constants.ERROR_ITEMS_BY_CATEGORY);
+            expect(newStore.itemsByCategory[categoryId].type).toBe(constants.ERROR_ITEMS_BY_CATEGORY);
         });
     });
 });

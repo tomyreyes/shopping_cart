@@ -1,5 +1,5 @@
 export interface ItemsByCategory {
-    readonly [category: string]: ItemsList;
+    readonly [categoryId: string]: ItemsList;
 }
 
 export type ItemsList = InitialEmptyItemsList |

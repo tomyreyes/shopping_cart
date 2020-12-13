@@ -21,37 +21,37 @@ export interface RequestItemsByCategoryErrorAction {
 }
 
 export interface ItemsByCategorySuccessPayload {
-    readonly category: string;
+    readonly categoryId: string;
     readonly items: ReadonlyArray<Item>;
 }
 
 export interface ItemsByCategoryErrorPayload {
-    readonly category: string;
+    readonly categoryId: string;
     readonly errorMessage: string;
 }
 
-export const requestItemsByCategory = (category: string): RequestItemsByCategoryAction => {
+export const requestItemsByCategory = (categoryId: string): RequestItemsByCategoryAction => {
     return {
         type: constants.REQUEST_ITEMS_BY_CATEGORY,
-        payload: category,
+        payload: categoryId,
     };
 };
 
-export const requestItemsByCategorySuccess = (category: string, items: ReadonlyArray<Item>): RequestItemsByCategorySuccessAction => {
+export const requestItemsByCategorySuccess = (categoryId: string, items: ReadonlyArray<Item>): RequestItemsByCategorySuccessAction => {
     return {
         type: constants.REQUEST_ITEMS_BY_CATEGORY_SUCCESS,
         payload: {
-            category: category,
+            categoryId: categoryId,
             items: items,
         },
     };
 };
 
-export const requestItemsByCategoryError = (category: string, errorMessage: string): RequestItemsByCategoryErrorAction => {
+export const requestItemsByCategoryError = (categoryId: string, errorMessage: string): RequestItemsByCategoryErrorAction => {
     return {
         type: constants.REQUEST_ITEMS_BY_CATEGORY_ERROR,
         payload: {
-            category: category,
+            categoryId: categoryId,
             errorMessage: errorMessage,
         },
     };
