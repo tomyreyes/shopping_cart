@@ -5,40 +5,40 @@ const image = {
     "type": "object",
     "properties": {
         "listing_image_id": {
-            "type": "integer"
+            "type": "number"
         },
         "hex_code": {
             "type": "string"
         },
         "red": {
-            "type": "integer"
+            "type": "number"
         },
         "green": {
-            "type": "integer"
+            "type": "number"
         },
         "blue": {
-            "type": "integer"
+            "type": "number"
         },
         "hue": {
-            "type": "integer"
+            "type": "number"
         },
         "saturation": {
-            "type": "integer"
+            "type": "number"
         },
         "brightness": {
-            "type": "integer"
+            "type": "number"
         },
         "is_black_and_white": {
             "type": "boolean"
         },
         "creation_tsz": {
-            "type": "integer"
+            "type": "number"
         },
         "listing_id": {
-            "type": "integer"
+            "type": "number"
         },
         "rank": {
-            "type": "integer"
+            "type": "number"
         },
         "url_75x75": {
             "type": "string"
@@ -53,10 +53,10 @@ const image = {
             "type": "string"
         },
         "full_height": {
-            "type": "integer"
+            "type": "number"
         },
         "full_width": {
-            "type": "integer"
+            "type": "number"
         },
     },
     "required": ["listing_image_id"]
@@ -71,7 +71,7 @@ const item = {
     "type": "object",
     "properties": {
         "listing_id": {
-            "type": "integer"
+            "type": "number"
         },
         "title": {
             "type": "string"
@@ -83,7 +83,7 @@ const item = {
             "type": "string"
         },
         "views": {
-            "type": "integer"
+            "type": "number"
         },
         "Images": imagesArray,
     },
