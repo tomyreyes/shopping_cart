@@ -11,7 +11,7 @@ export interface AddItemAction {
 
 export interface RemoveItemAction {
     readonly type: typeof REMOVE_ITEM;
-    readonly payload: string;
+    readonly payload: number;
 }
 
 // tslint:disable-next-line: no-any
@@ -22,7 +22,7 @@ export const addItem = (item: any): AddItemAction => {
     };
 };
 
-export const removeItem = (itemId: string): RemoveItemAction => {
+export const removeItem = (itemId: number): RemoveItemAction => {
     return {
         type: REMOVE_ITEM,
         payload: itemId,
