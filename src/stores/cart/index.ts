@@ -1,11 +1,10 @@
 import * as constants from '../../application/constants';
 import { CartAction } from './actions';
 import * as R from 'ramda';
+import { Item } from '../items/types';
 
 export interface CartStore {
-    // TODO change this to declared type for products
-    // tslint:disable-next-line: no-any
-    readonly items: ReadonlyArray<any>;
+    readonly items: ReadonlyArray<Item>;
     readonly cost: number;
 }
 
@@ -28,8 +27,7 @@ export const reducer = (store: CartStore = buildDefaultStore(), action?: CartAct
         case constants.REMOVE_ITEM:
             return {
                 ...store,
-                // tslint:disable-next-line: no-any
-                items: R.filter((item: any): any => item.id !== action.payload, store.items),
+                items: R.filter((item: Item): boolean => item.id !== action.payload, store.items),
             };
         default:
             return store;
