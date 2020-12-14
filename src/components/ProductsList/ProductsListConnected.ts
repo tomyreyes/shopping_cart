@@ -4,7 +4,7 @@ import { RequestItemsByCategoryAction, requestItemsByCategory } from '../../stor
 import { ProductsList, ProductsListActions, ProductsListState } from './ProductsList';
 import { Store } from '../../stores';
 import { RouteComponentProps } from 'react-router-dom';
-import { determineValidCategoryId } from './determineCategoryByUrlParameter';
+import { determineValidCategoryId } from './helpers';
 import { selectItemsForCategory } from '../../selectors/items/selectItemsForCategory';
 import { selectLastUpdatedForCategory } from '../../selectors/items/selectLastUpdatedForCategory';
 
