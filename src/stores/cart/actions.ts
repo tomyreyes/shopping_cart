@@ -13,7 +13,7 @@ export interface AddItemAction {
 }
 export interface RemoveItemAction {
     readonly type: typeof REMOVE_ITEM;
-    readonly payload: number;
+    readonly payload: Item;
 }
 
 export const addItem = (cartItem: Item): AddItemAction => {
@@ -23,9 +23,9 @@ export const addItem = (cartItem: Item): AddItemAction => {
     };
 };
 
-export const removeItem = (itemId: number): RemoveItemAction => {
+export const removeItem = (cartItem: Item): RemoveItemAction => {
     return {
         type: REMOVE_ITEM,
-        payload: itemId,
+        payload: cartItem,
     };
 };

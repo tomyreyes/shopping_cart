@@ -46,7 +46,7 @@ describe('the store reducer', () => {
                 items: [item],
                 cost: 0,
             };
-            const newStore = reducer(oldStore, removeItem(item.id));
+            const newStore = reducer(oldStore, removeItem(item));
             expect(newStore.cartItems.length).toBe(0);
         });
     });
