@@ -2,9 +2,9 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Footer } from '../components/Main/Footer';
-import { Header } from '../components/Main/Header';
-import { PageSwitcher } from '../components/Main/PageSwitcher';
+import { Footer } from '../components/Footer';
+import { HeaderConnected } from '../components/Header/HeaderConnected';
+import { PageSwitcher } from '../components/PageSwitcher';
 import { ApplicationSaga, buildSaga, runSaga } from '../sagas';
 import { buildStore, CreatedStore } from '../application/store';
 import { loadCachedDataRequest } from '../stores/dataCache';
@@ -25,7 +25,7 @@ export const Application = (): JSX.Element => {
         <Provider store={store}>
             <BrowserRouter>
             <CssBaseline />
-                <Header />
+                <HeaderConnected />
                     <PageSwitcher />
                 <Footer />
             </BrowserRouter>

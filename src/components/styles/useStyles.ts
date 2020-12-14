@@ -38,4 +38,7 @@ export const useStyles = makeStyles({
     cardContent: {
         flexGrow: 1,
     },
+    cartIcon: {
+        color: colors.white,
+    },
 });
