@@ -9,7 +9,11 @@ export interface HomeActions {
 type Props = HomeActions;
 
 export const Home = (props: Props): JSX.Element => {
+    const preventDispatch = true
     useEffect((): void => {
+        if (preventDispatch) {
+            return;
+        }
         props.dispatchRequestItemsByCategory('starwars');
     });
 
