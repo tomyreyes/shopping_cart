@@ -6,7 +6,7 @@ import { Item, ItemsList, LastUpdated, SuccessItemsList } from '../../stores/ite
 import { shouldRequestNewData } from './helpers';
 import { useStyles } from '../styles/useStyles';
 import { Container, Typography, Card, CardContent, CardMedia, Grid, CardActions, Button, LinearProgress } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { AddItemAction } from '../../stores/cart/actions';
 export interface ProductsListState {
     readonly categoryId: string;
     readonly itemsForCategory: ItemsList;
@@ -14,12 +14,12 @@ export interface ProductsListState {
 }
 export interface ProductsListActions {
     readonly dispatchRequestItemsByCategory: (Id: string) => RequestItemsByCategoryAction;
+    readonly addItem: (item: Item) => AddItemAction;
 }
 
 type Props = ProductsListState & ProductsListActions;
 
 export const ProductsList = (props: Props): JSX.Element => {
-    const history = useHistory();
     useEffect((): void => {
         if (!shouldRequestNewData(props.lastUpdatedForCategory, props.categoryId)) {
             return;
@@ -28,8 +28,8 @@ export const ProductsList = (props: Props): JSX.Element => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.categoryId]);
     const classes = useStyles();
-    const onClick = (id: number): void => {
-        history.push(`/product/${id}`);
+    const onClick = (item: Item): void => {
+        props.addItem(item);
     };
     return (
         <div>
@@ -43,7 +43,7 @@ export const ProductsList = (props: Props): JSX.Element => {
     );
 };
 
-const renderProductsListBasedOnType = (itemsForCategory: ItemsList, classes: any, onClick: (id: number) => void): JSX.Element => {
+const renderProductsListBasedOnType = (itemsForCategory: ItemsList, classes: any, onClick: (item: Item) => void): JSX.Element => {
     if (!itemsForCategory) {
         return <div>Show initial empty component.</div>;
     }
@@ -60,7 +60,7 @@ const renderProductsListBasedOnType = (itemsForCategory: ItemsList, classes: any
     }
 };
 
-const renderSuccessComponent = (itemsForCategory: SuccessItemsList, classes: any, onClick: (id: number) => void): JSX.Element => (
+const renderSuccessComponent = (itemsForCategory: SuccessItemsList, classes: any, onClick: (item: Item) => void): JSX.Element => (
     <Container maxWidth='md'>
         <Grid container spacing={4}>
             {
@@ -71,8 +71,8 @@ const renderSuccessComponent = (itemsForCategory: SuccessItemsList, classes: any
     </Container>
 );
 
-const renderItem = (item: Item, classes: any, onClick: (id: number) => void): JSX.Element => (
-    <Grid key={item.id} item xs={12} sm={6} md={4}>
+const renderItem = (item: Item, classes: any, onClick: (item: Item) => void): JSX.Element => (
+    <Grid key={item.id} item xs={12} sm={6} md={6}>
         <Card className={classes.card}>
             <CardMedia
                 className={classes.cardMedia}
@@ -80,19 +80,22 @@ const renderItem = (item: Item, classes: any, onClick: (id: number) => void): JS
                 title={item.title}
             />
             <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant='h5' component='h2'>
+                <Typography gutterBottom variant='h5'>
                     {item.title}
                 </Typography>
-                <Typography>
+                <Typography variant='subtitle1' gutterBottom>
+                    Description: {item.description}
+                </Typography>
+                <Typography variant='body1' gutterBottom>
                     Price: ${item.price}
                 </Typography>
-                    <Typography>
+                    <Typography variant='body1'>
                         Views: {item.views}
                     </Typography>
             </CardContent>
             <CardActions>
-                <Button size='small' color='primary' onClick={(): void => onClick(item.id)}>
-                    View Details
+                <Button size='small' color='primary' onClick={(): void => onClick(item)}>
+                    Add To Cart
                     </Button>
             </CardActions>
         </Card>
@@ -114,4 +117,4 @@ const renderLoadingComponent = (classes: any): JSX.Element => (
             <LinearProgress/>
         </Typography>
     </Container>
-)
+);
