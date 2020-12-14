@@ -18,7 +18,7 @@ type Props = ProductsListState & ProductsListActions;
 
 export const ProductsList = (props: Props): JSX.Element => {
     useEffect((): void => {
-        if (props.categoryId === 'no-match' || !shouldRequestNewData(props.lastUpdatedForCategory)) {
+        if (!shouldRequestNewData(props.lastUpdatedForCategory, props.categoryId)) {
             console.log('no request');
             return;
         }
@@ -51,10 +51,10 @@ const renderProductsListBasedOnType = (itemsForCategory: ItemsList): JSX.Element
     }
 };
 
-const shouldRequestNewData = (lastUpdated: LastUpdated): boolean => {
+const shouldRequestNewData = (lastUpdated: LastUpdated, categoryId: string): boolean => {
     const currentDate = moment();
     const minuteThreshhold = 15;
-    if (!lastUpdated) {
+    if (!lastUpdated || categoryId === 'no-match') {
         return true;
     }
 
