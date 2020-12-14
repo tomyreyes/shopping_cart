@@ -1,5 +1,6 @@
 import { ADD_ITEM, REMOVE_ITEM } from '../../application/constants';
 import { LoadCachedDataErrorAction, LoadCachedDataSuccessAction } from '../dataCache';
+import { Item } from '../items/types';
 
 export type CartAction = AddItemAction |
 RemoveItemAction |
@@ -8,27 +9,23 @@ LoadCachedDataSuccessAction;
 
 export interface AddItemAction {
     readonly type: typeof ADD_ITEM;
-    // TODO replace this with declared time of product item
-    // tslint:disable-next-line: no-any
-    readonly payload: any;
+    readonly payload: Item;
 }
-
 export interface RemoveItemAction {
     readonly type: typeof REMOVE_ITEM;
-    readonly payload: number;
+    readonly payload: Item;
 }
 
-// tslint:disable-next-line: no-any
-export const addItem = (cartItem: any): AddItemAction => {
+export const addItem = (cartItem: Item): AddItemAction => {
     return {
         type: ADD_ITEM,
         payload: cartItem,
     };
 };
 
-export const removeItem = (itemId: number): RemoveItemAction => {
+export const removeItem = (cartItem: Item): RemoveItemAction => {
     return {
         type: REMOVE_ITEM,
-        payload: itemId,
+        payload: cartItem,
     };
 };
