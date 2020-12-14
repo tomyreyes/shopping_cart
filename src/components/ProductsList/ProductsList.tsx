@@ -5,7 +5,7 @@ import { RequestItemsByCategoryAction } from '../../stores/items/actions';
 import { Item, ItemsList, LastUpdated, SuccessItemsList } from '../../stores/items/types';
 import { shouldRequestNewData } from './helpers';
 import { useStyles } from '../styles/useStyles';
-import { Container, Typography, Card, CardContent, CardMedia, Grid, CardActions, Button, CircularProgress } from '@material-ui/core';
+import { Container, Typography, Card, CardContent, CardMedia, Grid, CardActions, Button, LinearProgress } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 export interface ProductsListState {
     readonly categoryId: string;
@@ -108,10 +108,10 @@ const renderErrorComponent = (classes: any): JSX.Element => (
 );
 
 const renderLoadingComponent = (classes: any): JSX.Element => (
-    <Container maxWidth='sm'>
-        <Typography component='h1' variant='h2' align='center' gutterBottom className={classes.heroText}>
+    <Container maxWidth='sm' style={{ marginBottom: 600 }}>
+        <Typography component='h1' variant='h2' align='center' gutterBottom className={classes.categoryTitleText}>
             Please wait.
+            <LinearProgress/>
         </Typography>
-        <CircularProgress/>
     </Container>
 )
