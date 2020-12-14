@@ -15,10 +15,10 @@ export interface RemoveItemAction {
 }
 
 // tslint:disable-next-line: no-any
-export const addItem = (item: any): AddItemAction => {
+export const addItem = (cartItem: any): AddItemAction => {
     return {
         type: ADD_ITEM,
-        payload: item,
+        payload: cartItem,
     };
 };
 

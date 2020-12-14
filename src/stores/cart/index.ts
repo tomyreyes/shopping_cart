@@ -4,12 +4,12 @@ import * as R from 'ramda';
 import { Item } from '../items/types';
 
 export interface CartStore {
-    readonly items: ReadonlyArray<Item>;
+    readonly cartItems: ReadonlyArray<Item>;
     readonly cost: number;
 }
 
 export const buildDefaultStore = (): CartStore => ({
-    items: [],
+    cartItems: [],
     cost: 0,
 });
 
@@ -22,12 +22,12 @@ export const reducer = (store: CartStore = buildDefaultStore(), action?: CartAct
         case constants.ADD_ITEM:
             return {
                 ...store,
-                items: store.items.concat(action.payload),
+                cartItems: store.cartItems.concat(action.payload),
             };
         case constants.REMOVE_ITEM:
             return {
                 ...store,
-                items: R.filter((item: Item): boolean => item.id !== action.payload, store.items),
+                cartItems: R.filter((item: Item): boolean => item.id !== action.payload, store.cartItems),
             };
         default:
             return store;

@@ -5,7 +5,7 @@ import { Item } from '../items/types';
 
 // tslint:disable:no-expression-statement typedef
 describe('the store reducer', () => {
-    describe('the items state', () => {
+    describe('the cart items state', () => {
         it('adds a item to the items list by the add item action', () => {
             const oldStore = buildDefaultStore();
             const item: Item = {
@@ -22,10 +22,10 @@ describe('the store reducer', () => {
                 },
             };
             const newStore = reducer(oldStore, addItem(item));
-            expect(newStore.items[0]).toBe(item);
+            expect(newStore.cartItems[0]).toBe(item);
         });
 
-        it('removes an item from the items list by the remove item action', () => {
+        it('removes an item from the cart items list by the remove item action', () => {
             const item: Item = {
                 id: aNumber(),
                 title: aString(),
@@ -45,7 +45,7 @@ describe('the store reducer', () => {
                 cost: 0,
             };
             const newStore = reducer(oldStore, removeItem(item.id));
-            expect(newStore.items.length).toBe(0);
+            expect(newStore.cartItems.length).toBe(0);
         });
     });
 });
