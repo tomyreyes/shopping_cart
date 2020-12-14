@@ -8,6 +8,7 @@ import { PageSwitcher } from '../components/main/PageSwitcher';
 import { ApplicationSaga, buildSaga, runSaga } from '../sagas';
 import { buildStore, CreatedStore } from '../application/store';
 import { loadCachedDataRequest } from '../stores/dataCache';
+import { CssBaseline } from '@material-ui/core';
 
 const saga = buildSaga();
 const store = buildStore(saga);
@@ -23,6 +24,7 @@ export const Application = (): JSX.Element => {
     return (
         <Provider store={store}>
             <BrowserRouter>
+            <CssBaseline />
                 <Header />
                     <PageSwitcher />
                 <Footer />
