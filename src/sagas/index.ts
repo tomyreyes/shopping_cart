@@ -1,6 +1,8 @@
 // tslint:disable:no-expression-statement
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
+import { watchLoadCachedDataRequest } from './dataCache/loadData';
 import { watchRequestItemsByCategory } from './items';
+import { watchStateChangesToSaveToCache } from './dataCache/saveData';
 
 export const sagaMiddleware = createSagaMiddleware();
 
@@ -14,4 +16,6 @@ export const buildSaga = (): ApplicationSaga => ({
 
 export function runSaga(middleware: SagaMiddleware<object>): void {
     middleware.run(watchRequestItemsByCategory);
+    middleware.run(watchStateChangesToSaveToCache);
+    middleware.run(watchLoadCachedDataRequest);
 }

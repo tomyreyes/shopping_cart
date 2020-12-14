@@ -1,6 +1,10 @@
 import { ADD_ITEM, REMOVE_ITEM } from '../../application/constants';
+import { LoadCachedDataErrorAction, LoadCachedDataSuccessAction } from '../dataCache';
 
-export type CartAction = AddItemAction | RemoveItemAction;
+export type CartAction = AddItemAction |
+RemoveItemAction |
+LoadCachedDataErrorAction |
+LoadCachedDataSuccessAction;
 
 export interface AddItemAction {
     readonly type: typeof ADD_ITEM;
@@ -15,10 +19,10 @@ export interface RemoveItemAction {
 }
 
 // tslint:disable-next-line: no-any
-export const addItem = (item: any): AddItemAction => {
+export const addItem = (cartItem: any): AddItemAction => {
     return {
         type: ADD_ITEM,
-        payload: item,
+        payload: cartItem,
     };
 };
 

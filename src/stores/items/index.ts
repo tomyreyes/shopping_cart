@@ -34,6 +34,7 @@ export const reducer = (store: ItemsStore = buildDefaultStore(), action?: ItemsA
                     [action.payload.categoryId]: {
                         type: constants.SUCCESS_ITEMS_BY_CATEGORY,
                         items: action.payload.items,
+                        lastUpdated: action.payload.lastUpdated,
                     },
                 },
             };
@@ -47,6 +48,11 @@ export const reducer = (store: ItemsStore = buildDefaultStore(), action?: ItemsA
                         errorMessage: action.payload.errorMessage,
                     },
                 },
+            };
+        case constants.LOAD_CACHED_DATA_SUCCESS:
+            return {
+                ...store,
+                itemsByCategory: action.payload.itemsList,
             };
         default:
             return store;

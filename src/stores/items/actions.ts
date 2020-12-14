@@ -1,9 +1,13 @@
 import * as constants from '../../application/constants';
+import { LoadCachedDataErrorAction, LoadCachedDataSuccessAction } from '../dataCache';
 import { Item } from './types';
+import * as moment from 'moment';
 
 export type ItemsAction = RequestItemsByCategoryAction
 | RequestItemsByCategorySuccessAction
-| RequestItemsByCategoryErrorAction;
+| RequestItemsByCategoryErrorAction
+| LoadCachedDataSuccessAction
+| LoadCachedDataErrorAction;
 
 export interface RequestItemsByCategoryAction {
     readonly type: typeof constants.REQUEST_ITEMS_BY_CATEGORY;
@@ -23,6 +27,7 @@ export interface RequestItemsByCategoryErrorAction {
 export interface ItemsByCategorySuccessPayload {
     readonly categoryId: string;
     readonly items: ReadonlyArray<Item>;
+    readonly lastUpdated: moment.Moment;
 }
 
 export interface ItemsByCategoryErrorPayload {
@@ -37,12 +42,14 @@ export const requestItemsByCategory = (categoryId: string): RequestItemsByCatego
     };
 };
 
-export const requestItemsByCategorySuccess = (categoryId: string, items: ReadonlyArray<Item>): RequestItemsByCategorySuccessAction => {
+export const requestItemsByCategorySuccess = (categoryId: string, items: ReadonlyArray<Item>, lastUpdated: moment.Moment):
+    RequestItemsByCategorySuccessAction => {
     return {
         type: constants.REQUEST_ITEMS_BY_CATEGORY_SUCCESS,
         payload: {
             categoryId: categoryId,
             items: items,
+            lastUpdated: lastUpdated,
         },
     };
 };
