@@ -43,3 +43,5 @@ export interface ImageProperties {
     readonly mediumUrl: string;
     readonly fullUrl: string;
 }
+
+export type LastUpdated = moment.Moment | undefined;

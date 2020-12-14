@@ -1,12 +1,14 @@
 // tslint:disable: no-expression-statement
 import * as constants from '../../application/constants';
+import moment from 'moment';
 import { useEffect } from 'react';
 import { RequestItemsByCategoryAction } from '../../stores/items/actions';
-import { ItemsList } from '../../stores/items/types';
+import { ItemsList, LastUpdated } from '../../stores/items/types';
 
 export interface ProductsListState {
     readonly categoryId: string;
     readonly itemsForCategory: ItemsList;
+    readonly lastUpdatedForCategory: LastUpdated;
 }
 export interface ProductsListActions {
     readonly dispatchRequestItemsByCategory: (Id: string) => RequestItemsByCategoryAction;
@@ -16,9 +18,11 @@ type Props = ProductsListState & ProductsListActions;
 
 export const ProductsList = (props: Props): JSX.Element => {
     useEffect((): void => {
-        if (props.categoryId === 'no-match') {
+        if (props.categoryId === 'no-match' || !shouldRequestNewData(props.lastUpdatedForCategory)) {
+            console.log('no request');
             return;
         }
+        console.log('sending request');
         props.dispatchRequestItemsByCategory(props.categoryId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.categoryId]);
@@ -45,4 +49,18 @@ const renderProductsListBasedOnType = (itemsForCategory: ItemsList): JSX.Element
         default:
             return <div>Show initial empty component.</div>;
     }
+};
+
+const shouldRequestNewData = (lastUpdated: LastUpdated): boolean => {
+    const currentDate = moment();
+    const minuteThreshhold = 15;
+    if (!lastUpdated) {
+        return true;
+    }
+
+    if (!moment.isMoment(lastUpdated)) {
+        const lastUpdatedMomentObject = moment(lastUpdated);
+        return lastUpdatedMomentObject.diff(currentDate, 'minutes') >=minuteThreshhold;
+    }
+    return lastUpdated.diff(currentDate, 'minutes') >= minuteThreshhold;
 };

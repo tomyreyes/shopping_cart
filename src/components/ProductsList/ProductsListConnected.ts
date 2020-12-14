@@ -6,6 +6,7 @@ import { Store } from '../../stores';
 import { RouteComponentProps } from 'react-router-dom';
 import { determineValidCategoryId } from './determineCategoryByUrlParameter';
 import { selectItemsForCategory } from '../../selectors/items/selectItemsForCategory';
+import { selectLastUpdatedForCategory } from '../../selectors/items/selectLastUpdatedForCategory';
 
 type Action = RequestItemsByCategoryAction;
 
@@ -15,6 +16,7 @@ const mapStateToProps = (store: Store, ownProps: RouteComponentProps<any>): Prod
     return {
         categoryId,
         itemsForCategory: selectItemsForCategory(store, categoryId),
+        lastUpdatedForCategory: selectLastUpdatedForCategory(store, categoryId),
     };
 };
 
