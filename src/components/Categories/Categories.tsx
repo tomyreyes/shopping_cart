@@ -32,7 +32,7 @@ const CategoryCard = (category: Category): JSX.Element => {
         history.push(category.path);
     };
     return (
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid key={category.title} item xs={12} sm={6} md={4}>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}

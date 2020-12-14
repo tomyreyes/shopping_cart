@@ -43,7 +43,7 @@ interface ValidatedResponseItemJSON {
     readonly description: string;
     readonly price: string;
     readonly views: number;
-    readonly Images: ValidatedResponseImageJSON;
+    readonly Images: ReadonlyArray<ValidatedResponseImageJSON>;
 }
 
 interface ValidatedResponseImageJSON {
@@ -65,10 +65,10 @@ const parseIndexValueToItem = (result: ValidatedResponseItemJSON): Item => {
         price: parseFloat(result.price),
         views: result.views,
         imageProperties: {
-            avatarUrl: result.Images.url_75x75,
-            smallUrl: result.Images.url_170x135,
-            mediumUrl: result.Images.url_570xN,
-            fullUrl: result.Images.url_fullxfull,
+            avatarUrl: result.Images[0].url_75x75,
+            smallUrl: result.Images[0].url_170x135,
+            mediumUrl: result.Images[0].url_570xN,
+            fullUrl: result.Images[0].url_fullxfull,
         },
     };
 };
