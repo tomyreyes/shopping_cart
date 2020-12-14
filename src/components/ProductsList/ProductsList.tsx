@@ -58,9 +58,14 @@ const shouldRequestNewData = (lastUpdated: LastUpdated): boolean => {
         return true;
     }
 
-    if (!moment.isMoment(lastUpdated)) {
+    if (!lastUpdateIsMomentObject(lastUpdated)) {
         const lastUpdatedMomentObject = moment(lastUpdated);
-        return lastUpdatedMomentObject.diff(currentDate, 'minutes') >=minuteThreshhold;
+        return lastUpdatedMomentObject.diff(currentDate, 'minutes') >= minuteThreshhold;
     }
+
     return lastUpdated.diff(currentDate, 'minutes') >= minuteThreshhold;
 };
+
+const lastUpdateIsMomentObject = (lastUpdated: LastUpdated): boolean => (
+    moment.isMoment(lastUpdated)
+);
