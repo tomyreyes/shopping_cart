@@ -9,5 +9,4 @@ const mapStateToProps = (store: Store): HeaderProps => {
     };
 };
 
-
 export const HeaderConnected = connect(mapStateToProps, undefined)(Header);
