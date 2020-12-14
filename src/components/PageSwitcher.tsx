@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { HomeConnected } from '../Home/HomeConnected';
-import { ProductsListConnected } from '../ProductsList/ProductsListConnected';
-import { CartConnected } from '../Cart/CartConnected';
-import { PageNotFound } from '../PageNotFound';
+import { HomeConnected } from './Home/HomeConnected';
+import { ProductsListConnected } from './ProductsList/ProductsListConnected';
+import { CartConnected } from './Cart/CartConnected';
+import { PageNotFound } from './PageNotFound';
 
 export const PageSwitcher = (): JSX.Element => {
     return (
