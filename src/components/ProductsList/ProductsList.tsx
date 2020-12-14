@@ -47,6 +47,7 @@ const renderProductsListBasedOnType = (itemsForCategory: ItemsList, classes: any
     if (!itemsForCategory) {
         return <div>Show initial empty component.</div>;
     }
+
     switch (itemsForCategory.type) {
         case constants.LOADING_ITEMS_BY_CATEGORY:
             return renderLoadingComponent(classes);
@@ -60,16 +61,28 @@ const renderProductsListBasedOnType = (itemsForCategory: ItemsList, classes: any
     }
 };
 
-const renderSuccessComponent = (itemsForCategory: SuccessItemsList, classes: any, onClick: (item: Item) => void): JSX.Element => (
-    <Container maxWidth='md'>
-        <Grid container spacing={4}>
-            {
-                itemsForCategory.items.map((item: Item): JSX.Element => (
-                    renderItem(item, classes, onClick)
-                ))}
-        </Grid>
-    </Container>
-);
+const renderSuccessComponent = (itemsForCategory: SuccessItemsList, classes: any, onClick: (item: Item) => void): JSX.Element => {
+    if (itemsForCategory.items.length === 0) {
+        return (
+            <Container maxWidth='sm'>
+                <Typography component='h1' variant='h2' align='center' gutterBottom className={classes.categoryTitleText}>
+                    We're sorry. The products you are trying to view are currently unavailable.
+                </Typography>
+            </Container>
+        );
+    }
+
+    return (
+        <Container maxWidth='md'>
+            <Grid container spacing={4}>
+                {
+                    itemsForCategory.items.map((item: Item): JSX.Element => (
+                        renderItem(item, classes, onClick)
+                    ))}
+            </Grid>
+        </Container>
+    );
+};
 
 const renderItem = (item: Item, classes: any, onClick: (item: Item) => void): JSX.Element => (
     <Grid key={item.id} item xs={12} sm={6} md={6}>
