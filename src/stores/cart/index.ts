@@ -23,12 +23,14 @@ export const reducer = (store: CartStore = buildDefaultStore(), action?: CartAct
             return {
                 ...store,
                 cartItems: store.cartItems.concat(action.payload),
+                cost: store.cost + action.payload.price,
             };
         case constants.REMOVE_ITEM:
             const cartItem = action.payload;
             return {
                 ...store,
                 cartItems: R.filter((item: Item): boolean => item.id !== cartItem.id, store.cartItems),
+                cost: store.cost - cartItem.price,
             };
         case constants.LOAD_CACHED_DATA_SUCCESS:
             return {
