@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Footer } from '../components/Main/Footer';
-import { Header } from '../components/Main/Header';
+import { HeaderConnected } from '../components/Header/HeaderConnected';
 import { PageSwitcher } from '../components/Main/PageSwitcher';
 import { ApplicationSaga, buildSaga, runSaga } from '../sagas';
 import { buildStore, CreatedStore } from '../application/store';
@@ -25,7 +25,7 @@ export const Application = (): JSX.Element => {
         <Provider store={store}>
             <BrowserRouter>
             <CssBaseline />
-                <Header />
+                <HeaderConnected />
                     <PageSwitcher />
                 <Footer />
             </BrowserRouter>
