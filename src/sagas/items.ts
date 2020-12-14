@@ -8,6 +8,7 @@ import { AxiosResponse } from 'axios';
 import { validateIncomingData } from '../api/validation';
 import { itemsArray } from '../api/schema';
 import { Item } from '../stores/items/types';
+import moment from 'moment';
 
 const API_KEY = process.env.REACT_APP_API_KEY || '';
 
@@ -26,7 +27,8 @@ export function* updateItemsByCategory(action: RequestItemsByCategoryAction): Up
             return yield put(requestItemsByCategoryError(categoryId, errorMessage));
         }
         const items = parseResponseToItemsForStore(apiResponse.data.results);
-        return yield put(requestItemsByCategorySuccess(categoryId, items));
+        const lastUpdated = moment();
+        return yield put(requestItemsByCategorySuccess(categoryId, items, lastUpdated));
     } catch (error) {
         return yield put(requestItemsByCategoryError(categoryId, error));
     }

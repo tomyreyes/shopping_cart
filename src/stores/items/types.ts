@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 export interface ItemsByCategory {
     readonly [categoryId: string]: ItemsList;
 }
@@ -19,6 +20,7 @@ export interface LoadingItemsList {
 export interface SuccessItemsList {
     readonly type: 'SUCCESS_ITEMS_BY_CATEGORY';
     readonly items: ReadonlyArray<Item>;
+    readonly lastUpdated: moment.Moment;
 }
 
 export interface ErrorItemsList {

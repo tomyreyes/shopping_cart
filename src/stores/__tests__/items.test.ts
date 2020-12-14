@@ -5,6 +5,7 @@ import { buildDefaultStore, ItemsStore, reducer } from '../items';
 import { RequestItemsByCategoryAction, RequestItemsByCategoryErrorAction, RequestItemsByCategorySuccessAction } from '../items/actions';
 import { Item } from '../items/types';
 import { DataCache, loadCachedDataSuccess } from '../dataCache';
+import moment from 'moment';
 
 describe('the items reducer', () => {
     describe('when sending a request for items by categoryId', () => {
@@ -42,6 +43,7 @@ describe('the items reducer', () => {
                 payload: {
                     categoryId,
                     items: [item],
+                    lastUpdated: moment(),
                 },
             };
             const newStore = reducer(oldStore, action);
@@ -89,6 +91,7 @@ describe('the items reducer', () => {
                             fullUrl: aString(),
                         },
                     }],
+                    lastUpdated: moment(),
                 },
             },
         };

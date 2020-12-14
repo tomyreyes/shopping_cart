@@ -34,6 +34,7 @@ export const reducer = (store: ItemsStore = buildDefaultStore(), action?: ItemsA
                     [action.payload.categoryId]: {
                         type: constants.SUCCESS_ITEMS_BY_CATEGORY,
                         items: action.payload.items,
+                        lastUpdated: action.payload.lastUpdated,
                     },
                 },
             };
