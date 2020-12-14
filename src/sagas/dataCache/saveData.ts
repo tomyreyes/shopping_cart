@@ -8,6 +8,7 @@ export function* watchStateChangesToSaveToCache(): IterableIterator<ForkEffect> 
     yield takeLatest([
         constants.REQUEST_ITEMS_BY_CATEGORY_SUCCESS,
         constants.ADD_ITEM,
+        constants.REMOVE_ITEM,
     ], saveDataToCache);
 }
 
