@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Container, Grid, Card, CardMedia, CardContent, Button, CardActions } from '@material-ui/core';
 import { useStyles } from '../styles/useStyles';
 import { categories, Category } from './categoriesList';
+import { useHistory } from 'react-router-dom';
 
 export const Categories = (): JSX.Element => {
     const classes = useStyles();
@@ -24,7 +25,12 @@ export const Categories = (): JSX.Element => {
 };
 
 const CategoryCard = (category: Category): JSX.Element => {
+    const history = useHistory();
     const classes = useStyles();
+    const onClick = (): void => {
+        // tslint:disable-next-line: no-expression-statement
+        history.push(category.path);
+    };
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card className={classes.card}>
@@ -42,8 +48,8 @@ const CategoryCard = (category: Category): JSX.Element => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size='small' color='primary'>
-                        View
+                    <Button size='small' color='primary' onClick={onClick}>
+                        View Products
                     </Button>
                 </CardActions>
             </Card>
