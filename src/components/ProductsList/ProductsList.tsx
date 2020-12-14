@@ -53,7 +53,7 @@ const renderProductsListBasedOnType = (itemsForCategory: ItemsList, classes: any
         case constants.SUCCESS_ITEMS_BY_CATEGORY:
             return renderSuccessComponent(itemsForCategory, classes, onClick);
         case constants.ERROR_ITEMS_BY_CATEGORY:
-            return <div>Show error component.</div>;
+            return renderErrorComponent(classes);
         case constants.INITIAL_EMPTY_ITEMS_BY_CATEGORY:
         default:
             return <div>Show initial empty component.</div>;
@@ -98,3 +98,11 @@ const renderItem = (item: Item, classes: any, onClick: (id: number) => void): JS
         </Card>
     </Grid>
 );
+
+const renderErrorComponent = (classes: any): JSX.Element => (
+    <Container maxWidth='sm'>
+        <Typography component='h1' variant='h2' align='center' gutterBottom className={classes.categoryTitleText}>
+            We're sorry. The products you are trying to view are currently unavailable.
+        </Typography>
+    </Container>
+)
