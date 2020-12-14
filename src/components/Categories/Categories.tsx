@@ -21,7 +21,7 @@ export const Categories = (): JSX.Element => {
                 </Grid>
             </Container>
         </div>
-    )
+    );
 };
 
 const CategoryCard = (category: Category): JSX.Element => {
@@ -54,5 +54,5 @@ const CategoryCard = (category: Category): JSX.Element => {
                 </CardActions>
             </Card>
         </Grid>
-    )
-}
+    );
+};

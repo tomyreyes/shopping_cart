@@ -7,7 +7,6 @@ import { Item } from '../../stores/items/types';
 import { selectCartItems } from '../../selectors/cart/selectCartItems';
 import { selectCartCost } from '../../selectors/cart/selectCartCost';
 
-// tslint:disable-next-line: no-any
 const mapStateToProps = (store: Store): CartProps => {
     return {
         cartItems: selectCartItems(store),

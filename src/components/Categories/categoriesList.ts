@@ -28,4 +28,4 @@ export const categories: ReadonlyArray<Category> = [
         imageUrl: StarWars,
         path: '/categories/starwars',
     },
-]
+];
