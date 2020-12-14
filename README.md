@@ -63,6 +63,12 @@ yarn test [--watch]
 yarn start [-c]
 ```
 
+6. When on your browser, please use any CORS extension available and turn it on to prevent CORS errors when running the client. 
+
+I personally like [Allow CORS: Access-Control-Allow-origin](https://mybrowseraddon.com/access-control-allow-origin.html)
+
+### Notes
+
 If you forgot to place an API KEY in the previous step, you will need to start from step 3 and ensure you clear your cache
 
 ```
