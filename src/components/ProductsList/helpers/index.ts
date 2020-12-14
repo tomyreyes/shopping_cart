@@ -23,10 +23,9 @@ export const shouldRequestNewData = (lastUpdated: LastUpdated, categoryId: strin
 
     if (!lastUpdateIsMomentObject(lastUpdated)) {
         const lastUpdatedMomentObject = moment(lastUpdated);
-        return lastUpdatedMomentObject.diff(currentDate, 'minutes') >= minuteThreshhold;
+        return currentDate.diff(lastUpdatedMomentObject, 'minutes') >= minuteThreshhold;
     }
-
-    return lastUpdated.diff(currentDate, 'minutes') >= minuteThreshhold;
+    return currentDate.diff(lastUpdated, 'minutes') >= minuteThreshhold;
 };
 
 export const lastUpdateIsMomentObject = (lastUpdated: LastUpdated): boolean => (

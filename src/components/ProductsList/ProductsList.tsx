@@ -5,7 +5,7 @@ import { RequestItemsByCategoryAction } from '../../stores/items/actions';
 import { Item, ItemsList, LastUpdated, SuccessItemsList } from '../../stores/items/types';
 import { shouldRequestNewData } from './helpers';
 import { useStyles } from '../styles/useStyles';
-import { Container, Typography, Card, CardContent, CardMedia, Grid, CardActions, Button } from '@material-ui/core';
+import { Container, Typography, Card, CardContent, CardMedia, Grid, CardActions, Button, CircularProgress } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 export interface ProductsListState {
     readonly categoryId: string;
@@ -49,7 +49,7 @@ const renderProductsListBasedOnType = (itemsForCategory: ItemsList, classes: any
     }
     switch (itemsForCategory.type) {
         case constants.LOADING_ITEMS_BY_CATEGORY:
-            return <div>Show loading component.</div>;
+            return renderLoadingComponent(classes);
         case constants.SUCCESS_ITEMS_BY_CATEGORY:
             return renderSuccessComponent(itemsForCategory, classes, onClick);
         case constants.ERROR_ITEMS_BY_CATEGORY:
@@ -104,5 +104,14 @@ const renderErrorComponent = (classes: any): JSX.Element => (
         <Typography component='h1' variant='h2' align='center' gutterBottom className={classes.categoryTitleText}>
             We're sorry. The products you are trying to view are currently unavailable.
         </Typography>
+    </Container>
+);
+
+const renderLoadingComponent = (classes: any): JSX.Element => (
+    <Container maxWidth='sm'>
+        <Typography component='h1' variant='h2' align='center' gutterBottom className={classes.heroText}>
+            Please wait.
+        </Typography>
+        <CircularProgress/>
     </Container>
 )
