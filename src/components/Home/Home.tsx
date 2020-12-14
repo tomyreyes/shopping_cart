@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { RequestItemsByCategoryAction } from '../../stores/items/actions';
 import { Typography, Container } from '@material-ui/core';
 import { useStyles } from '../styles/useStyles';
-import { Categories } from '../Categories';
+import { Categories } from '../Categories/Categories';
 
 export interface HomeActions {
     readonly dispatchRequestItemsByCategory: (categoryId: string) => RequestItemsByCategoryAction;
