@@ -5,7 +5,10 @@ import { selectDataForCache } from '../../selectors/cache/selectDataForCache';
 import { DataCache, saveDataError, saveDataSuccess } from '../../stores/dataCache';
 
 export function* watchStateChangesToSaveToCache(): IterableIterator<ForkEffect> {
-    yield takeLatest(constants.REQUEST_ITEMS_BY_CATEGORY_SUCCESS, saveDataToCache);
+    yield takeLatest([
+        constants.REQUEST_ITEMS_BY_CATEGORY_SUCCESS,
+        constants.ADD_ITEM,
+    ], saveDataToCache);
 }
 
 export function* saveDataToCache(): UpdateResult {

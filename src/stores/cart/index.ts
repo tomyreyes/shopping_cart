@@ -29,6 +29,12 @@ export const reducer = (store: CartStore = buildDefaultStore(), action?: CartAct
                 ...store,
                 cartItems: R.filter((item: Item): boolean => item.id !== action.payload, store.cartItems),
             };
+        case constants.LOAD_CACHED_DATA_SUCCESS:
+            return {
+                ...store,
+                cartItems: store.cartItems.concat(action.payload.cartItems),
+                cost: store.cost + action.payload.cost,
+            };
         default:
             return store;
     }

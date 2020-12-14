@@ -94,6 +94,8 @@ describe('the items reducer', () => {
                     lastUpdated: moment(),
                 },
             },
+            cartItems: [],
+            cost: 0,
         };
         beforeEach(() => {
             const loadDataFromCacheAction = loadCachedDataSuccess(cachedData);

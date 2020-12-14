@@ -1,8 +1,10 @@
 import * as constants from '../application/constants';
-import { ItemsByCategory } from './items/types';
+import { Item, ItemsByCategory } from './items/types';
 
 export interface DataCache {
     readonly itemsList: ItemsByCategory;
+    readonly cartItems: ReadonlyArray<Item>;
+    readonly cost: number;
 }
 
 export interface SaveDataSuccessAction {

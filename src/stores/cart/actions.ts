@@ -1,6 +1,10 @@
 import { ADD_ITEM, REMOVE_ITEM } from '../../application/constants';
+import { LoadCachedDataErrorAction, LoadCachedDataSuccessAction } from '../dataCache';
 
-export type CartAction = AddItemAction | RemoveItemAction;
+export type CartAction = AddItemAction |
+RemoveItemAction |
+LoadCachedDataErrorAction |
+LoadCachedDataSuccessAction;
 
 export interface AddItemAction {
     readonly type: typeof ADD_ITEM;

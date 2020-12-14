@@ -34,4 +34,6 @@ const deserializeCachedData = (serializedData: string): DataCache => {
 
 const setDefaultDataValuesForStore = (): DataCache => ({
     itemsList: {},
+    cartItems: [],
+    cost: 0,
 });
